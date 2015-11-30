@@ -1,0 +1,28 @@
+﻿<html>
+<head>
+	<title>教师日历查询</title>
+	<style type="text/css">
+		div#div_left{float:left;}
+		div#div_right{float:right;}
+	</style>
+</head>
+<body>
+	<center><h1>查询教师日历</h1><br>
+<div align="center"><a href="/search/?id={{Number}}">返回</a></div>
+	<form action="" method="post">
+		<p>查询<input type="text" name="date" placeholder="xxxx(year)[-xx(month)][-xx(day)]"/><input type="submit" value="确定" /></p><br>
+	<p>一一一 {{year}} 年{% if month %}  {{ month }} 月 {% endif %}一一一</p>
+	<br>
+	<table border="1" cellpadding="35">
+		<tr>
+			<th>日期</th><th>事件</th>
+		</tr>
+		{% for date in date_list %}
+			<tr>
+				<td>{{date.Time}}</td><td>事件：{{date.Event}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+	</center>
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿<div align="center"><h1>教师信息管理系统</h1></div>
+<div align="center"><a href="/search/?id={{ student.Number }}">教师搜索</a>
+<form action="" method="post" align="left">
+{% csrf_token %}
+姓名:<br>
+<textarea name="Name"  type="text" cols="5" rows="1" style="resize:none" >{{ student.Name }}</textarea>
+<br>联系方式:<br>
+<textarea name="Tel"  type="text" cols="20" rows="1" style="resize:none">{{ student.Tel }}</textarea>
+<br>专业:<br>
+<textarea name="Profession"  type="text" cols="10" rows="1" style="resize:none">{{ student.Profession }}</textarea>
+<br>学年:<br>
+<textarea name="Xuenian"  type="text" cols="10" rows="1" style="resize:none">{{ student.Xuenian }}</textarea>
+<td><a href="/updata/?id={{student.Number}}">修改</a><td/><br>
+</form>

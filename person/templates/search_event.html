@@ -1,0 +1,34 @@
+﻿<html>
+<head>
+	<title>教师日历查询</title>
+	<style type="text/css">
+		div#div_left{float:left;}
+		div#div_right{float:right;}
+	</style>
+</head>
+<body>
+	<center><h1>查询教师日历</h1><br>
+	<form action="" method="post">
+		<p>查询<input type="text" name="date" placeholder="xxxx(year)[-xx(month)][-xx(day)]"/><input type="submit" value="确定" /></p><br>
+	</form>
+	<a href="/add_event/?id={{ ID }}"<button type="button" value="add_event" >添加日程</button></a>
+	<p>一一一 {{year}} 年{% if month %}  {{ month }} 月 {% endif %}{% if d > -1 %}星期{{ d }} {% endif %}一一一</p>
+	</form><br>
+	<form method="post">
+	<table border="1" cellpadding="35">
+		<tr>
+			<th>日期</th><th>事件</th>
+		</tr>
+		{% for date in date_list %}
+			<tr>
+				<td>{{date.Time}}</td>
+				<td>事件：{{date.Event}}</td>
+				<td><button value="{{date.Time}}" name="but">把我删了吧</button></td>
+			</tr>
+		{% endfor %}
+	</table>
+	</form>
+	</center>
+</body>
+<div align="center"><a href="/fanhui/?id={{ ID }}">返回</a></div>
+</html>

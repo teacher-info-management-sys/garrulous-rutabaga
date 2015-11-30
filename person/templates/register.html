@@ -1,0 +1,18 @@
+﻿  <h1>Create an account</h1>
+  <form action="" method="post">{% csrf_token %} 
+<table border=1 align="center">
+ <tr>
+    <th>用户名</th><th>密码</th><th>类别</th>
+ </tr>
+ <tr>
+  <td><input name="user" type="text"></td>
+  <td><input name="Password" type="text"></td>
+  <td><select name="Leibie">
+			<option selected="selected" value="teacher">teacher</option>
+			<option value="student">student</option>
+	</select></td>  
+  <td><input type="submit" value="保存"> <input type="reset" value="重填"></td>
+ </tr>
+</table>
+  </form>
+<div align="center"><a href="/start/">返回</a></div>

@@ -1,0 +1,31 @@
+﻿<html>
+<div align="center"><h1>教师信息管理系统</h1></div>
+<div align="center"><a href="/fanhui/?id={{ID}}">返回</a></div>
+<form method="post">
+{% csrf_token %} 
+姓名:<br>
+<textarea name="Name"  type="text" cols="5" rows="1" style="resize:none" >{{ teacher.Name }}</textarea>
+<br>基本信息:<br>
+<textarea name="Information"  type="text" cols="40" rows="20" style="resize:none">{{ teacher.Information }}</textarea>
+<br>联系方式:<br>
+<textarea name="Tel"  type="text" cols="20" rows="1" style="resize:none">{{ teacher.Tel }}</textarea>
+<br>专业:<br>
+<textarea name="Profession"  type="text" cols="10" rows="1" style="resize:none">{{ teacher.Profession }}</textarea>
+<br>任职:<br>
+<textarea name="Position"  type="text" cols="20" rows="5" style="resize:none">{{ teacher.Position }}</textarea>
+<br>荣誉称号:<br>
+<textarea name="Rongyu"  type="text" cols="20" rows="20" style="resize:none">{{ teacher.Rongyu }}</textarea>
+<br>学术兼职:<br>
+<textarea name="Jianzhi"  type="text" cols="20" rows="10" style="resize:none">{{ teacher.Jianzhi }}</textarea>
+<br>研究领域:<br>
+<textarea name="Rfield"  type="text" cols="20" rows="10" style="resize:none">{{ teacher.Rfield }}</textarea>
+<br>基金:<br>
+<textarea name="Foundation"  type="text" cols="10" rows="1" style="resize:none">{{ teacher.Foundation }}</textarea>
+<br>工作经历:<br>
+<textarea name="Work"  type="text" cols="40" rows="20" style="resize:none">{{ teacher.Work }}</textarea>
+<br>教育经历:<br>
+<textarea name="Education"  type="text" cols="40" rows="20" style="resize:none">{{ teacher.Education }}</textarea>
+<br>科研成果:<br>
+<textarea name="Research"  type="text" cols="40" rows="20" style="resize:none">{{ teacher.Research }}</textarea><br>
+<input type="submit" value="保存"> <input type="reset" value="重填">
+</form>
