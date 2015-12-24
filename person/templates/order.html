@@ -1,0 +1,59 @@
+﻿<html>
+<head>
+	<title>教师预约</title>
+	<style type="text/css">
+		div#div_left{float:left;}
+		div#div_right{float:right;}
+	</style>
+</head>
+<body>
+	<center><h1>教师预约</h1></center><br>
+    <center><a href="/search/?id={{ID}}">返回</a></center>
+       <form method="post" name="add">
+            <center><table border="1" cellpadding="35">
+                <tr>
+                    <td><input type=text name="time" placeholder="预约时间"></td>
+                    <td><input type=text name="event" placeholder="预约说明"></td>
+                    <td><input type="submit"></td>
+                </tr>
+            </table></center>
+        </form>
+	<div style="position:absolute; left:100px;top:200px"><table border="1" cellpadding="35">
+    <tr>
+    <td colspan=2>待生效</td>
+    </tr>
+		{% for order in orderlist %}
+        {%ifequal order.State "0" %}
+			<tr>
+				<td>{{order.Time}}</td><td>{{order.Event}}</td>
+			</tr>
+        {% endifequal%}
+		{% endfor %}
+	</table></div>
+	<div style="position:absolute; left:600px;top:200px"><table border="1" cellpadding="35">
+    <tr>
+    <td colspan=2>已生效</td>
+    </tr>
+		{% for order in orderlist %}
+        {%ifequal order.State "1" %}
+			<tr>
+				<td>{{order.Time}}</td><td>{{order.Event}}</td>
+			</tr>
+        {% endifequal%}
+		{% endfor %}
+	</table></div>
+	<div style="position:absolute; left:1000px;top:200px"><table border="1" cellpadding="35">
+    <tr>
+    <td colspan=2>未抽中</td>
+    </tr>
+		{% for order in orderlist %}
+        {%ifequal order.State "2" %}
+			<tr>
+				<td>{{order.Time}}</td><td>{{order.Event}}</td>
+			</tr>
+        {% endifequal%}
+		{% endfor %}
+	</table></div>
+
+</body>
+</html>

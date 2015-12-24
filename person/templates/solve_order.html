@@ -1,0 +1,28 @@
+﻿<html>
+<head>
+	<title>预约查询</title>
+	<style type="text/css">
+		div#div_left{float:left;}
+		div#div_right{float:right;}
+	</style>
+</head>
+<body>
+	<center><h1>预约显示</h1><br>
+    <div align="center"><a href="/fanhui/?id={{ ID }}">返回</a></div>
+	<form method="post">
+	<table border="1" cellpadding="35">
+		{% for order in orderlist %}
+        {% ifequal order.State "0" %}
+			<tr>
+				<td>{{order.Time}}</td>
+				<td>{{order.Event}}</td>
+				<td><button value="{{order.Sender}}" name="yes">同意</button><button value="{{order.Sender}}" name="no">拒绝</button>
+			</tr>
+        {% endifequal %}
+		{% endfor %}
+	</table>
+	</form>
+	</center>
+</body>
+
+</html>

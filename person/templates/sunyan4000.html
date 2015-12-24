@@ -1,11 +1,8 @@
-﻿<html>
-<head>
-<link href="../static/sun4.css" rel="stylesheet" type="text/css">
-</head>
-<div align="center"><h1>教师信息管理系统</h1></div>
-<div align="center"><a href="/fanhui/?id={{ID}}">返回</a></div>
-<form method="post">
-{% csrf_token %} 
+﻿<div align="center"><h1>教师信息管理系统</h1></div>
+<div align="center"><a href="/search/?id={{ teacher.Number }}">教师搜索</a>
+<div align="center"><a href="/order_teacher/?id={{ teacher.Number }}">教师推荐</a>
+<form action="" method="post" align="center">
+{% csrf_token %}
 姓名:<br>
 <textarea name="Name"  type="text" cols="5" rows="1" style="resize:none" >{{ teacher.Name }}</textarea>
 <br>基本信息:<br>
@@ -30,6 +27,6 @@
 <textarea name="Education"  type="text" cols="40" rows="20" style="resize:none">{{ teacher.Education }}</textarea>
 <br>科研成果:<br>
 <textarea name="Research"  type="text" cols="40" rows="20" style="resize:none">{{ teacher.Research }}</textarea><br>
-<input type="submit" value="保存"> <input type="reset" value="重填">
+<td><a href="/search_event/?id={{teacher.Number}}">日程</a><td/><br>
+<td><a href="/updata/?id={{teacher.Number}}">修改</a><td/><br>
 </form>
-</html>

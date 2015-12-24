@@ -3,9 +3,9 @@
 <link href="../static/sun4.css" rel="stylesheet" type="text/css">
 </head>
 <div align="center"><h1>教师信息管理系统</h1></div>
-<div align="center"><a href="/fanhui/?id={{ID}}">返回</a></div>
-<form method="post">
-{% csrf_token %} 
+<div align="center"><a href="/order_teacher/?id={{Number}}">返回</a></div>
+<form action="" method="post" align="center">
+{% csrf_token %}
 姓名:<br>
 <textarea name="Name"  type="text" cols="5" rows="1" style="resize:none" >{{ teacher.Name }}</textarea>
 <br>基本信息:<br>
@@ -30,6 +30,5 @@
 <textarea name="Education"  type="text" cols="40" rows="20" style="resize:none">{{ teacher.Education }}</textarea>
 <br>科研成果:<br>
 <textarea name="Research"  type="text" cols="40" rows="20" style="resize:none">{{ teacher.Research }}</textarea><br>
-<input type="submit" value="保存"> <input type="reset" value="重填">
-</form>
+<td><a href="/search_event1/?id={{Number}}&sousuo={{teacher.Number}}">日程</a><td/>
 </html>

@@ -1,0 +1,55 @@
+h1{
+    color:blue;
+    background-color:#9999cc;
+    font-family:"隶书";
+    text-align:center;
+}
+.special{
+    color:blue;
+    background-color:#9999cc;
+    font-family:"隶书";
+    text-align:center;
+    font-size:25px;
+}
+ul{
+    font-family:宋体;
+    font-weight:bold;
+    font-style:italic;
+    color:#000acc;
+    font-size:20px;
+}
+span.title{
+    font-family:宋体;
+    font-weight:bold;
+    font-style:italic;
+    color:#000acc;
+    font-size:20px;
+}
+p{
+    line-height:1.5;
+    text-indent:2em;
+    padding-left:2em;
+    font-family:微软雅黑;
+    font-weight:normal;
+    font-style:normal;
+    color:black;
+    font-size:16px;
+}
+a.rev{
+    font-family:宋体;
+    font-size:20px;
+    color:blue;
+    font-weight:bold;
+    text-align:right;
+}
+div#index{
+    position:absolute;
+    top:100px;
+    left:600px;
+    background-color:#aaaaff;
+    border-style:dotted;
+    border-color:blue;
+}
+span{
+    font-family:黑体;
+}

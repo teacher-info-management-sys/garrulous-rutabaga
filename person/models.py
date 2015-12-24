@@ -36,7 +36,18 @@ class Student(models.Model):
     Xuenian=models.CharField(max_length=20)
     def __unicode__(self):
         return self.Name
+
+class Order(models.Model):
+    Sender = models.CharField(max_length=20)
+    Receiver = models.CharField(max_length=20)
+    Event = models.CharField(max_length=100)
+    Time = models.CharField(max_length=20)
+    State = models.CharField(max_length=2)
+    
 admin.site.register(Yonghu)       
 admin.site.register(Teacher)   
 admin.site.register(Log)        
-admin.site.register(Student)    
+admin.site.register(Student)
+
+
+admin.site.register(Order)   

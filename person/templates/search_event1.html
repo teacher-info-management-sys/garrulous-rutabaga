@@ -24,5 +24,8 @@
 		{% endfor %}
 	</table>
 	</center>
+    {% if sNumber %}
+    <center><a href="/appoinment/?sNumber={{sNumber}}&rNumber={{rNumber}}">预约该教师</a></center>
+    {% endif %}
 </body>
 </html>

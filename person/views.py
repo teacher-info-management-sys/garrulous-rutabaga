@@ -1,5 +1,5 @@
 from django.template import RequestContext
-from models import Teacher,Yonghu,Log,Student
+from models import Teacher,Yonghu,Log,Student,Order
 from django.shortcuts import render_to_response
 
 from django.http import HttpResponseRedirect
@@ -184,6 +184,16 @@ def add_event(request):
 def search_event1(request):
     ID = request.GET["sousuo"]
     Number=request.GET["id"]
+    
+    sNumber = 0
+    rNumber = 0
+    p=Yonghu.objects.filter(Number = Number)
+    for i in p:
+        if i.Leibie=="student":
+            sNumber = Number
+            rNumber = ID
+            break
+    
     if request.POST:
 		post = request.POST
 		time = post["date"]
@@ -202,8 +212,8 @@ def search_event1(request):
 		# c = y % 100 + int(y/4) + 5 - 2 * 20 +int(26 * (m + 1) / 10) + 1 - 1
 		# c = 8 - c
 		monthlist=Log.objects.filter(Time__contains = time, Number = ID)
-		return render_to_response("search_event1.html", RequestContext(request,{"year":year,"month":month,"date_list":monthlist,"ID":ID,"Number":Number,}))
-    return render_to_response("search_event1.html",RequestContext(request,{"ID":ID,"Number":Number,}))
+		return render_to_response("search_event1.html", RequestContext(request,{"year":year,"month":month,"date_list":monthlist,"ID":ID,"Number":Number,"sNumber":sNumber,"rNumber":rNumber}))
+    return render_to_response("search_event1.html",RequestContext(request,{"ID":ID,"Number":Number,"sNumber":sNumber,"rNumber":rNumber}))
 def fanhui(request):
     ID = request.GET["id"]
     a=Yonghu.objects.get(Number = ID)
@@ -217,3 +227,77 @@ def fanhui(request):
         for i in p:
             c=RequestContext(request,{"student":i})
             return render_to_response("sunyan1.html",c)
+def order(request):
+    ID = request.GET["sNumber"]
+    sNumber = ID
+    rNumber = request.GET["rNumber"]
+    orderlist = Order.objects.filter(Sender = sNumber, Receiver = rNumber)
+    if request.POST:
+        post = request.POST
+        neworder = Order(
+            Sender = sNumber,
+            Receiver = rNumber,
+            Time = post["time"],
+            Event = post["event"],
+            State = "0",
+        )
+        neworder.save()
+        HttpResponseRedirect("/appoinment/?sNumber="+sNumber+"&rNumber="+rNumber)
+    return render_to_response("order.html",RequestContext(request,{"sNumber":sNumber,"rNumber":rNumber,"orderlist":orderlist,"ID":ID,}))
+        
+def solve_order(request):
+    rNumber = request.GET["rNumber"]
+    ID =  rNumber
+    orderlist = Order.objects.filter(Receiver = rNumber)
+    if "yes" in request.POST:
+        post = request.POST
+        sNumber = post["yes"]
+        ord = Order.objects.filter(Sender = sNumber, Receiver = rNumber)
+        for order in ord:
+            order.State = "1"
+            order.save()
+            new_event = Log(
+                Number = ID,
+                Time = order.Time,
+                Event = order.Event,
+            )
+            new_event.save()
+            return HttpResponseRedirect("/search_event/?id="+ID)
+            break
+    if "no" in request.POST:
+        post = request.POST
+        sNumber = post["no"]
+        ord = Order.objects.filter(Sender = sNumber, Receiver = rNumber)
+        for order in ord:
+            order.State = "2"
+            order.save()
+            break
+    return render_to_response("solve_order.html",RequestContext(request,{"ID":ID,"orderlist":orderlist,}))
+def search_information(request):
+    ID = request.GET["sousuo"]
+    Number=request.GET["id"]
+    a=Teacher.objects.get(Number = ID)
+    c=RequestContext(request,{"teacher":a,"Number":Number,})
+    return render_to_response("sunyan8.html",c)
+def search_information1(request):
+    ID = request.GET["sousuo"]
+    Number=request.GET["id"]
+    a=Teacher.objects.get(Number = ID)
+    c=RequestContext(request,{"teacher":a,"Number":Number,})
+    return render_to_response("sunyan8.html",c)
+def order_teacher(request):
+    Number=request.GET["id"]
+    d=RequestContext(request,{"Number":Number})
+    a=[]
+    if request.POST:
+        post = request.POST
+        Profession = post["Profession"]
+        p=Teacher.objects.filter(Profession = Profession)
+        Rfield = post["Rfield"]
+        for i in p:
+            if Rfield in i.Rfield:
+                a.append(i)
+        c=RequestContext(request,{"Teacher_list":a,"Number":Number,})
+        return render_to_response("sunyan9.html",c)
+    else:
+        return render_to_response("sunyan9.html",d)

@@ -3,12 +3,9 @@
 <link href="../static/sun4.css" rel="stylesheet" type="text/css">
 </head>
 <div align="center"><h1>教师信息管理系统</h1></div>
-<div align="center"><a href="/search/?id={{ teacher.Number }}">教师搜索</a></div>
-<div align="center"><a href="/order_teacher/?id={{ teacher.Number }}">教师推荐</a></div>
-<div align="center"><a class="rev" href="/search_event/?id={{teacher.Number}}">日程</a></div>
-<div align="center"><a class="rev" href="/updata/?id={{teacher.Number}}">修改信息</a></div>
+<div align="center"><a href="/search/?id={{Number}}">返回</a></div>
+<div align=center><a class="rev" href="/search_event1/?id={{Number}}&sousuo={{teacher.Number}}">日程</a></div>
 {% csrf_token %}
-<br>
 <h1>{{ teacher.Name }}</h1>
 <ul>
     <li>基本信息:</li>
@@ -34,4 +31,5 @@
     <li>科研成果:
     <p>{{ teacher.Research }}</p></li>
 </ul>
+
 </html>

@@ -11,7 +11,8 @@
 	<form action="" method="post">
 		<p>查询<input type="text" name="date" placeholder="xxxx(year)[-xx(month)][-xx(day)]"/><input type="submit" value="确定" /></p><br>
 	</form>
-	<a href="/add_event/?id={{ ID }}"<button type="button" value="add_event" >添加日程</button></a>
+	<a href="/add_event/?id={{ ID }}"<button type="button" value="add_event" >添加日程</button></a><br>
+    <a href="/solve_order/?rNumber={{ ID }}"<button type="button" value="solve_order" >预约队列</button></a>
 	<p>一一一 {{year}} 年{% if month %}  {{ month }} 月 {% endif %}{% if d > -1 %}星期{{ d }} {% endif %}一一一</p>
 	</form><br>
 	<form method="post">

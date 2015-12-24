@@ -1,18 +1,22 @@
-﻿</html>
+﻿<html>
+<head>
+<link href="../static/sun4.css" type="text/css" rel="stylesheet">
+</head>
+<body>
 <div align="center"><h1>教师信息管理系统</h1></div>
-  <form action="" method="post">
+<div id="index">
+  <form action="" method="post" >
 {% csrf_token %}
-    <label for="username">用户名:</label>
-    <input type="text" name="username" >
-    <label for="password">密码:</label>
-    <input type="password" name="password" >
-<div>
-<div style="width:20%;padding:0;margin:0;float:left;">
-   <input type="submit" value="登录"></div>     
+    <label for="username"><span>用户名:</span></label>
+    <input type="text" name="username" ><br>
+    <label for="password"><span>密码:&nbsp;&nbsp;</span></label>
+    <input type="password" name="password" ><br>
+   <input type="submit" value="登录">   
   </form>
   <form action="/register/" method="post">
-<div style="width:20%;padding:0;margin:0;float:left;">
-   <input type="submit" value="注册"></div> 
-</div> 
+   <input type="submit" value="注册">
  </form>
+</div>
+</body>
+</html>
 

@@ -1,0 +1,22 @@
+﻿<html>
+<head>
+<link href="../static/sun4.css" rel="stylesheet" type="text/css">
+</head>
+<div align="center"><h1>教师信息管理系统</h1></div>
+<div align="center"><a href="/fanhui/?id={{Number}}">返回</a></div>
+<form action="/order_teacher/?id={{Number}}" method="post" align="center">
+{% csrf_token %}  
+<b>输入教师专业：</b>
+<input name="Profession"  type="text">
+<b>输入教师研究领域：</b>
+<input name="Rfield"  type="text">
+<input type="submit" value="搜索">
+</form>
+<div align="center" class="special">
+  {% for teacher in Teacher_list %}
+<a href="/search_information1/?id={{Number}}&sousuo={{teacher.Number}}">{{ teacher.Name }}</a></div>
+<span class="title">基本信息:</span>
+<p>{{ teacher.Information }}</p>
+{% endfor %}
+</div>
+</html>
