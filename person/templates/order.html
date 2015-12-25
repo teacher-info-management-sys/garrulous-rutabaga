@@ -14,22 +14,23 @@
                 <tr>
                     <td><input type=text name="time" placeholder="预约时间"></td>
                     <td><input type=text name="event" placeholder="预约说明"></td>
-                    <td><input type="submit"></td>
+                    <td><input type="submit" name="ad"></td>
                 </tr>
             </table></center>
         </form>
-	<div style="position:absolute; left:100px;top:200px"><table border="1" cellpadding="35">
+	<div style="position:absolute; left:100px;top:200px">
+    <form method="post" name="del"><table border="1" cellpadding="35">
     <tr>
     <td colspan=2>待生效</td>
     </tr>
 		{% for order in orderlist %}
         {%ifequal order.State "0" %}
 			<tr>
-				<td>{{order.Time}}</td><td>{{order.Event}}</td>
+				<td>{{order.Time}}</td><td>{{order.Event}}</td><td><button name="but" value={{order.id}}>删除</button></td>
 			</tr>
         {% endifequal%}
 		{% endfor %}
-	</table></div>
+	</table></form></div>
 	<div style="position:absolute; left:600px;top:200px"><table border="1" cellpadding="35">
     <tr>
     <td colspan=2>已生效</td>
@@ -42,18 +43,18 @@
         {% endifequal%}
 		{% endfor %}
 	</table></div>
-	<div style="position:absolute; left:1000px;top:200px"><table border="1" cellpadding="35">
+	<div style="position:absolute; left:1000px;top:200px"><form method="post" name="del"><table border="1" cellpadding="35">
     <tr>
     <td colspan=2>未抽中</td>
     </tr>
 		{% for order in orderlist %}
         {%ifequal order.State "2" %}
 			<tr>
-				<td>{{order.Time}}</td><td>{{order.Event}}</td>
+				<td>{{order.Time}}</td><td>{{order.Event}}</td><td><button name="but" value="{{order.id}}">删除</button></td>
 			</tr>
         {% endifequal%}
 		{% endfor %}
-	</table></div>
+	</table></form></div>
 
 </body>
 </html>

@@ -232,7 +232,7 @@ def order(request):
     sNumber = ID
     rNumber = request.GET["rNumber"]
     orderlist = Order.objects.filter(Sender = sNumber, Receiver = rNumber)
-    if request.POST:
+    if "ad" in request.POST:
         post = request.POST
         neworder = Order(
             Sender = sNumber,
@@ -243,16 +243,22 @@ def order(request):
         )
         neworder.save()
         HttpResponseRedirect("/appoinment/?sNumber="+sNumber+"&rNumber="+rNumber)
+    if "but" in request.POST:
+        post=request.POST
+        d3 = post["but"]
+        n = Order.objects.get(id = d3)
+        n.delete()
+        HttpResponseRedirect("/appoinment/?sNumber="+sNumber+"&rNumber="+rNumber)
     return render_to_response("order.html",RequestContext(request,{"sNumber":sNumber,"rNumber":rNumber,"orderlist":orderlist,"ID":ID,}))
         
 def solve_order(request):
     rNumber = request.GET["rNumber"]
     ID =  rNumber
-    orderlist = Order.objects.filter(Receiver = rNumber)
+    orderlist = Order.objects.filter(Receiver = rNumber, State="0")
     if "yes" in request.POST:
         post = request.POST
         sNumber = post["yes"]
-        ord = Order.objects.filter(Sender = sNumber, Receiver = rNumber)
+        ord = Order.objects.filter(Sender = sNumber, Receiver = rNumber,State="0")
         for order in ord:
             order.State = "1"
             order.save()
@@ -267,7 +273,7 @@ def solve_order(request):
     if "no" in request.POST:
         post = request.POST
         sNumber = post["no"]
-        ord = Order.objects.filter(Sender = sNumber, Receiver = rNumber)
+        ord = Order.objects.filter(Sender = sNumber, Receiver = rNumber, State = "0")
         for order in ord:
             order.State = "2"
             order.save()
